@@ -2,7 +2,7 @@ import io
 
 import aiohttp
 
-from models.data_models import (
+from ..models.data_models import (
     Text2ImgIn,
     Text2ImgOut,
     FetchOut,

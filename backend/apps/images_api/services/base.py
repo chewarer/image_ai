@@ -4,7 +4,7 @@ import io
 from pydantic import BaseModel
 
 from config import AppConfig
-from models.data_models import Text2ImgOut
+from ..models.data_models import Text2ImgOut
 
 
 class ClientFabric(ABC):

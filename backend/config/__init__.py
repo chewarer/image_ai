@@ -1,4 +1,4 @@
-from .app_config import AppConfig, AIService
+from .config import AppConfig
 
 
 config: AppConfig = AppConfig()

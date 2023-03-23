@@ -3,13 +3,13 @@ from typing import Annotated
 from fastapi import APIRouter, Body
 
 from config import config
-from models.data_models import (
+from .models.data_models import (
     Text2ImgOut,
     FetchOut,
     SystemLoadOut,
     Text2ImgIn,
 )
-from services.sd import SDClient
+from .services.sd import SDClient
 
 
 router = APIRouter()
