@@ -1,9 +1,12 @@
 from fastapi import FastAPI
 
+from config import config
+from routers import routers
 
-app = FastAPI()
 
+app = FastAPI(
+    debug=config.DEBUG,
+    version=config.VERSION,
+)
 
-@app.get("/")
-def read_root():
-    return {"Hello": "World"}
+app.include_router(routers.router, prefix='/sd', tags=['Stable Diffusion'])
