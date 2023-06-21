@@ -1,0 +1,47 @@
+server {
+    listen                  ${NGINX_PORT};
+    server_name             ${NGINX_SERVER};
+
+    return 301 https://${NGINX_SERVER}$request_uri;
+}
+
+server {
+    listen                  ${NGINX_SSL_PORT} ssl;
+    server_name             ${NGINX_SERVER};
+
+    ssl_certificate /etc/nginx/ssl/live/project/fullchain.pem;
+    ssl_certificate_key /etc/nginx/ssl/live/project/privkey.pem;
+
+    include snippets/options-ssl.conf;
+    include snippets/options-csp.conf;
+
+    root                    /html;
+
+    proxy_connect_timeout   ${NGINX_TIMEOUT};
+    proxy_send_timeout      ${NGINX_TIMEOUT};
+    proxy_read_timeout      ${NGINX_TIMEOUT};
+    send_timeout            ${NGINX_TIMEOUT};
+    client_body_timeout     ${NGINX_TIMEOUT};
+
+
+    location ~ ^/(api|docs|openapi.json) {
+        proxy_pass http://${BACKEND_HOST}:${BACKEND_PORT};
+        proxy_set_header Host $http_host;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_redirect default;
+    }
+
+    location ~ /(assets|static|uploads) {
+        gzip on;
+        gzip_comp_level 9;
+        gzip_types text/html text/css image/svg+xml application/javascript application/json;
+        root /html;
+    }
+
+    location / {
+        gzip on;
+        gzip_comp_level 9;
+        try_files /index.html =404;
+    }
+}
