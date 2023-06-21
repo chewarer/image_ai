@@ -9,4 +9,4 @@ app = FastAPI(
     version=config.VERSION,
 )
 
-app.include_router(images_api_router, prefix='/sd', tags=['Stable Diffusion'])
+app.include_router(images_api_router)

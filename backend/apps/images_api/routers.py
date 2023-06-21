@@ -12,7 +12,7 @@ from .models.data_models import (
 from .services.sd import SDClient
 
 
-router = APIRouter()
+router = APIRouter(prefix='/api/v1/sd', tags=['Stable Diffusion'])
 
 
 @router.post(
@@ -28,7 +28,11 @@ async def text_to_image(
     return await ai_client.text_to_image(params)
 
 
-@router.get('/fetch', response_model=FetchOut, response_model_by_alias=False)
+@router.get(
+    '/fetch',
+    response_model=FetchOut,
+    response_model_by_alias=False,
+)
 async def fetch_image(img_id: int):
     ai_client = SDClient(config=config)
 

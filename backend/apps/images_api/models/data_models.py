@@ -11,6 +11,8 @@ from .base_models import (
 class Text2ImgIn(BaseAliasedModel):
     prompt: str = Field(example="Cute kitty", max_length=300)
     negative_prompt: Optional[str] = None
+    use_default_negative_prompt: bool = True
+    prettify_prompt: bool = Field(default=True, description="Add keys to prettify prompt")
     width: Optional[int] = Field(default=512)
     height: Optional[int] = Field(default=512)
     samples: Optional[int] = Field(
