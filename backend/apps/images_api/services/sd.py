@@ -2,6 +2,10 @@ import io
 
 import aiohttp
 
+from .lib import (
+    prettified_prompt_str,
+    default_negative_prompts_str,
+)
 from ..models.data_models import (
     Text2ImgIn,
     Text2ImgOut,
@@ -12,55 +16,55 @@ from .base import ClientFabric
 
 
 mocked_prompt = "ultra realistic close up portrait ((beautiful pale cyberpunk female with heavy " \
-                "black eyeliner)), blue eyes, shaved side haircut, hyper detail, cinematic " \
-                "lighting, magic neon, dark red city, Canon EOS R3, nikon, f/1.4, ISO 200, " \
-                "1/160s, 8K, RAW, unedited, symmetrical balance, in-frame, 8K"
+                "black eyeliner)), blue eyes, shaved side haircut, magic neon, dark red city"
 
-default_negative_prompts = [
-    "((out of frame))",
-    "((extra fingers))",
-    "mutated hands",
-    "((poorly drawn hands))",
-    "((poorly drawn face))",
-    "(((mutation)))",
-    "(((deformed)))",
-    "(((tiling)))",
-    "((tile))",
-    "((fleshpile))",
-    "((ugly))",
-    "(((abstract)))",
-    "blurry",
-    "((bad anatomy))",
-    "((bad proportions))",
-    "((extra limbs))",
-    "cloned face",
-    "(((skinny)))",
-    "glitchy",
-    "((extra breasts))",
-    "((double torso))",
-    "((extra arms))",
-    "((extra hands))",
-    "((mangled fingers))",
-    "((missing breasts))",
-    "(missing lips)",
-    "((ugly face))",
-    "((fat))",
-    "((extra legs))",
-    "anime",
-]
-
-default_negative_prompts_str = ", ".join(default_negative_prompts)
+mocked_response = {
+    'status': 'success',
+    'generationTime': 2.6407310962677,
+    'id': 7692181,
+    'output': ['https://pub-8b49af329fae499aa563997f5d4068a4.r2.dev/generations/d6393b54'
+               '-040a-4e67-a3a8-75f641288157-0.png'],
+    'meta': {'H': 512,
+             'W': 512,
+             'enable_attention_slicing': 'true',
+             'file_prefix': 'd6393b54-040a-4e67-a3a8-75f641288157',
+             'guidance_scale': 7.5,
+             'model': 'runwayml/stable-diffusion-v1-5',
+             'n_samples': 1,
+             'negative_prompt': '',
+             'outdir': 'out',
+             'prompt': 'ultra realistic close up portrait ((beautiful pale cyberpunk '
+                       'female with heavy black eyeliner)), blue eyes, shaved side '
+                       'haircut, hyper detail, cinematic lighting, magic neon, dark red '
+                       'city, Canon EOS R3, nikon, f/1.4, ISO 200, 1/160s, 8K, RAW, '
+                       'unedited, symmetrical balance, in-frame, 8K',
+             'revision': 'fp16',
+             'safetychecker': 'yes',
+             'seed': 3469051683,
+             'steps': 20,
+             'vae': 'stabilityai/sd-vae-ft-mse'}
+}
 
 
 class SDClient(ClientFabric):
     """Stable Diffusion client"""
     async def text_to_image(self, params: Text2ImgIn) -> Text2ImgOut:
+        if params.use_default_negative_prompt:
+            negative_prompt = params.negative_prompt
+        else:
+            negative_prompt = default_negative_prompts_str
+
+        # prompt = params.prompt
+        prompt = mocked_prompt
+
+        if params.prettify_prompt:
+            prompt = ", ".join((prompt, prettified_prompt_str))
+
         url = f"{self.config.SD_API_URL}/{self.config.SD_API_VER}/text2img"
-        negative_prompt = params.negative_prompt or default_negative_prompts_str
 
         body = dict(
             key=self.config.SD_API_KEY,
-            prompt=mocked_prompt,
+            prompt=prompt,
             negative_prompt=negative_prompt,
             width=params.width,
             height=params.height,
@@ -73,9 +77,11 @@ class SDClient(ClientFabric):
             track_id=None,
         )
 
-        async with aiohttp.ClientSession() as session:
-            async with session.post(url=url, data=body) as resp:
-                data: dict = await resp.json()
+        # async with aiohttp.ClientSession() as session:
+        #     async with session.post(url=url, data=body) as resp:
+        #         data: dict = await resp.json()
+
+        data = mocked_response
 
         return Text2ImgOut(**data)
 

@@ -1,0 +1,50 @@
+default_negative_prompts = [
+    "((out of frame))",
+    "((extra fingers))",
+    "mutated hands",
+    "((poorly drawn hands))",
+    "((poorly drawn face))",
+    "(((mutation)))",
+    "(((deformed)))",
+    "(((tiling)))",
+    "((tile))",
+    "((fleshpile))",
+    "((ugly))",
+    "(((abstract)))",
+    "blurry",
+    "((bad anatomy))",
+    "((bad proportions))",
+    "((extra limbs))",
+    "cloned face",
+    "(((skinny)))",
+    "glitchy",
+    "((extra breasts))",
+    "((double torso))",
+    "((extra arms))",
+    "((extra hands))",
+    "((mangled fingers))",
+    "((missing breasts))",
+    "(missing lips)",
+    "((ugly face))",
+    "((fat))",
+    "((extra legs))",
+    "anime",
+]
+
+default_negative_prompts_str = ", ".join(default_negative_prompts)
+
+prettified_prompt = [
+    "hyper detail",
+    "cinematic lighting",
+    "Canon EOS R3",
+    "nikon, f/1.4",
+    "ISO 200",
+    "1/160s",
+    "RAW",
+    "unedited",
+    "symmetrical balance",
+    "in-frame",
+    "8K",
+]
+
+prettified_prompt_str = ", ".join(prettified_prompt)
