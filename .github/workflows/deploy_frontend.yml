@@ -25,7 +25,7 @@
 #    and best practices on handling the access key credentials.
 
 
-name: Deploy to Amazon ECS Frontend container
+name: Deploy Frontend to Amazon ECS
 
 on:
   push:

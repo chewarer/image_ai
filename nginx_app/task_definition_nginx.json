@@ -15,7 +15,7 @@
             "volumesFrom": []
         }
     ],
-    "family": "test",
+    "family": "imgai_front",
     "executionRoleArn": "arn:aws:iam::947106399822:role/ecsTaskExecutionRole",
     "networkMode": "awsvpc",
     "volumes": [],
