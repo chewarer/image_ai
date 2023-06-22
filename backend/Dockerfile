@@ -6,7 +6,7 @@ FROM base AS branch-dev
 ENV REQUIREMENTS_FILE=requirements/dev.txt
 
 FROM base AS branch-prod
-ENV REQUIREMENTS_FILE=requirements/base.txt
+ENV REQUIREMENTS_FILE=./requirements/base.txt
 
 FROM branch-${MODE_ENV:-prod} as final
 
