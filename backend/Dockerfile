@@ -6,7 +6,7 @@ FROM base AS branch-dev
 ENV REQUIREMENTS_FILE=requirements/dev.txt
 
 FROM base AS branch-prod
-ENV REQUIREMENTS_FILE=backend/requirements/base.txt
+ENV REQUIREMENTS_FILE=requirements/base.txt
 
 FROM branch-${MODE_ENV:-prod} as final
 
@@ -15,7 +15,5 @@ COPY $REQUIREMENTS_FILE /tmp/requirements.txt
 RUN pip install -r /tmp/requirements.txt
 COPY . /usr/src/app/
 WORKDIR /usr/src/app/
-
-EXPOSE 7000
 
 CMD uvicorn main:app --host 0.0.0.0 --port 7000 --reload
