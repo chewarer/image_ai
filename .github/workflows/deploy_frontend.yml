@@ -25,20 +25,20 @@
 #    and best practices on handling the access key credentials.
 
 
-name: Deploy to Amazon ECS
+name: Deploy to Amazon ECS Frontend container
 
 on:
   push:
-    branches: [ "test_ci" ]
+    branches: [ "main" ]
 
 env:
   AWS_REGION: eu-west-3                   # set this to your preferred AWS region, e.g. us-west-1
-  ECR_REPOSITORY: imgai           # set this to your Amazon ECR repository name
-  ECS_SERVICE: imgai-backend-service                 # set this to your Amazon ECS service name
+  ECR_REPOSITORY: imgai_front           # set this to your Amazon ECR repository name
+  ECS_SERVICE: imgai-nginx-service                 # set this to your Amazon ECS service name
   ECS_CLUSTER: clustertwo  # test_cluster                 # set this to your Amazon ECS cluster name
-  ECS_TASK_DEFINITION: backend/task_definition_backend.json # set this to the path to your Amazon ECS task definition
+  ECS_TASK_DEFINITION: nginx_app/task_definition_nginx.json # set this to the path to your Amazon ECS task definition
                                                # file, e.g. .aws/task-definition.json
-  CONTAINER_NAME: imgai-backend           # set this to the name of the container in the
+  CONTAINER_NAME: imgai-nginx           # set this to the name of the container in the
                                                # containerDefinitions section of your task definition
 
 permissions:
@@ -46,11 +46,11 @@ permissions:
 
 jobs:
   deploy:
-    name: Deploy Backend
+    name: Deploy Frontend
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./backend
+        working-directory: ./nginx_app
     environment: production
 
     steps:
