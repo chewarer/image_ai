@@ -1,0 +1,29 @@
+{
+    "containerDefinitions": [
+        {
+            "name": "imgai-backend",
+            "image": "947106399822.dkr.ecr.eu-west-3.amazonaws.com/imgai",
+            "cpu": 1,
+            "portMappings": [
+                {
+                   "containerPort": 7000
+                }
+            ],
+            "essential": true,
+            "environment": [],
+            "mountPoints": [],
+            "volumesFrom": []
+        }
+    ],
+    "family": "test",
+    "executionRoleArn": "arn:aws:iam::947106399822:role/ecsTaskExecutionRole",
+    "networkMode": "awsvpc",
+    "volumes": [],
+    "placementConstraints": [],
+    "requiresCompatibilities": [
+        "FARGATE"
+    ],
+    "cpu": "256",
+    "memory": "512",
+    "tags": []
+}
