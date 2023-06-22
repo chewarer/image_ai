@@ -11,6 +11,7 @@ ENV REQUIREMENTS_FILE=./requirements/base.txt
 FROM branch-${MODE_ENV:-prod} as final
 
 RUN echo $REQUIREMENTS_FILE
+RUN echo .
 COPY $REQUIREMENTS_FILE /tmp/requirements.txt
 RUN pip install -r /tmp/requirements.txt
 COPY . /usr/src/app/
