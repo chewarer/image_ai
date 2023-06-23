@@ -82,7 +82,7 @@ jobs:
           docker build -f Dockerfile -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG \
           --build-arg MODE_ENV=prod \
           --build-arg BACKEND_HOST=0.0.0.0 \
-          --build-arg BACKEND_HOST=7000 .
+          --build-arg BACKEND_PORT=7000 .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
 
