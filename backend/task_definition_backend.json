@@ -10,7 +10,7 @@
                 }
             ],
             "essential": true,
-            "environment": [
+            "secrets": [
                 {
                     "name": "VERSION",
                     "valueFrom": "arn:aws:ssm:eu-west-3:947106399822:parameter/VERSION"
