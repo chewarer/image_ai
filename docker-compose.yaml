@@ -23,8 +23,8 @@ services:
       context: ./nginx_app
       dockerfile: Dockerfile
     container_name: imgai-nginx
-#    volumes:
-#      - ./nginx_app/nginx-templates/${NGINX_TEMPLATE:-dev}:/etc/nginx/templates
+    volumes:
+      - ./nginx_app/nginx-templates/${NGINX_TEMPLATE:-dev}:/etc/nginx/templates
 #      - ./frontend/dist:/html
     ports:
       - ${PREVIEW_PORT:-7042}:${NGINX_PORT:-80}

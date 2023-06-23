@@ -16,4 +16,10 @@ RUN pip install -r /tmp/requirements.txt
 COPY . /usr/src/app/
 WORKDIR /usr/src/app/
 
-CMD uvicorn main:app --host 0.0.0.0 --port 7000 --reload
+ARG BACKEND_HOST
+ENV ENV_BACKEND_HOST $BACKEND_HOST
+
+ARG BACKEND_PORT
+ENV ENV_BACKEND_PORT $BACKEND_PORT
+
+CMD uvicorn main:app --host ${ENV_BACKEND_HOST} --port ${ENV_BACKEND_PORT} --reload

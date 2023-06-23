@@ -32,7 +32,7 @@ on:
     branches: [ "test_ci" ]
     paths:
       - 'backend/**'
-      - '.github/workflows/**'
+      - '.github/workflows/deploy_backend.yml'
 
 env:
   AWS_REGION: eu-west-3                   # set this to your preferred AWS region, e.g. us-west-1
@@ -77,10 +77,12 @@ jobs:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         IMAGE_TAG: ${{ github.sha }}
       run: |
-        # Build a docker container and
-        # push it to ECR so that it can
-        # be deployed to ECS.
-        docker build -f Dockerfile -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+        >-
+          # Build a docker container and push it to ECR so that it can be deployed to ECS.
+          docker build -f Dockerfile -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG \
+          --build-arg MODE_ENV=prod \
+          --build-arg BACKEND_HOST=0.0.0.0 \
+          --build-arg BACKEND_HOST=7000 .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
 
