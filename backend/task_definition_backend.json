@@ -13,7 +13,7 @@
             "environment": [
                 {
                     "name": "VERSION",
-                    "value": "0.0.145"
+                    "valueFrom": "arn:aws:ssm:eu-west-3:947106399822:parameter/VERSION"
                 }
             ],
             "mountPoints": [],
