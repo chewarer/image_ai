@@ -12,7 +12,8 @@
             "essential": true,
             "environment": [
                 {
-                    "VERSION": "0.0.144"
+                    "name": "VERSION",
+                    "value": "0.0.144"
                 }
             ],
             "mountPoints": [],
