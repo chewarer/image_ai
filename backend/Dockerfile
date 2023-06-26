@@ -23,3 +23,4 @@ ARG BACKEND_PORT
 ENV ENV_BACKEND_PORT $BACKEND_PORT
 
 CMD uvicorn main:app --host ${ENV_BACKEND_HOST} --port ${ENV_BACKEND_PORT} --reload
+
