@@ -29,3 +29,4 @@ server {
         try_files /index.html =404;
     }
 }
+
