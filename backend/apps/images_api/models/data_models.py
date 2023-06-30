@@ -23,6 +23,7 @@ class Text2ImgIn(BaseAliasedModel):
 
 
 class Text2ImgOut(BaseSDModelOut):
+    id: int
     urls: Optional[list[HttpUrl]] = Field(alias="output")
     generation_time: Optional[float] = Field(alias="generationTime")
 

@@ -77,11 +77,11 @@ class SDClient(ClientFabric):
             track_id=None,
         )
 
-        # async with aiohttp.ClientSession() as session:
-        #     async with session.post(url=url, data=body) as resp:
-        #         data: dict = await resp.json()
+        async with aiohttp.ClientSession() as session:
+            async with session.post(url=url, data=body) as resp:
+                data: dict = await resp.json()
 
-        data = mocked_response
+        # data = mocked_response
 
         return Text2ImgOut(**data)
 

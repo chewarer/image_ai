@@ -35,14 +35,14 @@ on:
       - '.github/workflows/deploy_backend.yml'
 
 env:
-  AWS_REGION: eu-west-3                   # set this to your preferred AWS region, e.g. us-west-1
-  ECR_REPOSITORY: imgai           # set this to your Amazon ECR repository name
-  ECS_SERVICE: imgai-backend-service                 # set this to your Amazon ECS service name
-  ECS_CLUSTER: imgai-cluster  # test_cluster                 # set this to your Amazon ECS cluster name
-  ECS_TASK_DEFINITION: backend/task_definition_backend.json # set this to the path to your Amazon ECS task definition
-                                               # file, e.g. .aws/task-definition.json
+  AWS_REGION: eu-north-1                  # set this to your preferred AWS region, e.g. us-west-1
+  ECR_REPOSITORY: imgai-backend           # set this to your Amazon ECR repository name
+  ECS_SERVICE: imgai-backend-service      # set this to your Amazon ECS service name
+  ECS_CLUSTER: imgai-cluster              # set this to your Amazon ECS cluster name
+  ECS_TASK_DEFINITION: backend/task_definition_backend.json # set this to the path to your Amazon ECS
+                                          # task definition file, e.g. .aws/task-definition.json
   CONTAINER_NAME: imgai-backend           # set this to the name of the container in the
-                                               # containerDefinitions section of your task definition
+                                          # containerDefinitions section of your task definition
 
 permissions:
   contents: read

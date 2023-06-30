@@ -1,6 +1,6 @@
 from typing import Annotated
 
-from fastapi import APIRouter, Body
+from fastapi import APIRouter, Body, status
 
 from config import config
 from .models.data_models import (
@@ -13,6 +13,11 @@ from .services.sd import SDClient
 
 
 router = APIRouter(prefix='/api/v1/sd', tags=['Stable Diffusion'])
+
+
+@router.get('/healthcheck', status_code=status.HTTP_200_OK)
+def perform_healthcheck():
+    return {'healthcheck': 'OK'}
 
 
 @router.post(

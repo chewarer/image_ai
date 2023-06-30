@@ -12,8 +12,8 @@
             "essential": true,
             "secrets": [
                 {
-                    "name": "VERSION",
-                    "valueFrom": "arn:aws:ssm:eu-west-3:947106399822:parameter/VERSION"
+                    "name": "SD_API_KEY",
+                    "valueFrom": "arn:aws:ssm:eu-west-3:947106399822:parameter/SD_API_KEY"
                 }
             ],
             "mountPoints": [],
@@ -23,7 +23,7 @@
                 "secretOptions": null,
                 "options": {
                     "awslogs-group": "/ecs/imgai_backend",
-                    "awslogs-region": "eu-west-3",
+                    "awslogs-region": "eu-north-1",
                     "awslogs-stream-prefix": "ecs"
                 }
             }

@@ -35,7 +35,7 @@ on:
       - '.github/workflows/deploy_frontend.yml'
 
 env:
-  AWS_REGION: eu-west-3                   # set this to your preferred AWS region, e.g. us-west-1
+  AWS_REGION: eu-north-1                  # set this to your preferred AWS region, e.g. us-west-1
   ECR_REPOSITORY: imgai_front             # set this to your Amazon ECR repository name
   ECS_SERVICE: imgai-nginx-service        # set this to your Amazon ECS service name
   ECS_CLUSTER: imgai-cluster                 # set this to your Amazon ECS cluster name

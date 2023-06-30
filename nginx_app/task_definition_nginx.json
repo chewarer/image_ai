@@ -18,7 +18,7 @@
                 "secretOptions": null,
                 "options": {
                     "awslogs-group": "/ecs/imgai_front",
-                    "awslogs-region": "eu-west-3",
+                    "awslogs-region": "eu-north-1",
                     "awslogs-stream-prefix": "ecs"
                 }
             }
